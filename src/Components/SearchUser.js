@@ -28,12 +28,13 @@ const SearchUser = () => {
         <h2 className="text-center m-4">
           GitHub user's favourite programming language!
         </h2>
-        <form autoComplete="on">
+        <form autoComplete="on" onSubmit={onSubmitHandler}>
           <div className="row no-gutters">
             <div className="col">
               <input
                 className="form-control border-secondary border-right-0 rounded-0"
                 placeholder="Github Username"
+                onChange={onChangeHandler}
                 id="example-search-input4"
               />
               <span
@@ -47,12 +48,14 @@ const SearchUser = () => {
                 className="btn btn-outline-secondary border-left-0 rounded-0 rounded-right"
                 data-toggle="modal"
                 data-target="#exampleModalCenter"
+                onChange={resetInputField}
               >
                 Search
               </button>
             </div>
           </div>
         </form>
+
         <div
           className="modal fade"
           id="exampleModalCenter"
@@ -77,11 +80,15 @@ const SearchUser = () => {
                 </button>
               </div>
               <div className="modal-body text-center">
-                <div className="d-flex justify-content-center">
-                  <div className="spinner-border" role="status">
-                    <span className="sr-only">Loading...</span>
+                {data !== "" ? (
+                  data
+                ) : (
+                  <div className="d-flex justify-content-center">
+                    <div className="spinner-border" role="status">
+                      <span className="sr-only">Loading...</span>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
               <div className="modal-footer"></div>
             </div>
