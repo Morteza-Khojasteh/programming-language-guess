@@ -70,7 +70,6 @@ const SearchUser = () => {
                 className="btn btn-outline-secondary border-left-0 rounded-0 rounded-right"
                 data-toggle="modal"
                 data-target="#exampleModalCenter"
-                onChange={resetInputField}
               >
                 Search
               </button>
