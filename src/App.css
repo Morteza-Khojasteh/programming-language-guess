@@ -1,3 +1,18 @@
-.App {
-  align-items: center;
+body, html {
+background-image: linear-gradient(
+  325deg,
+  hsl(153deg 45% 81%) 0%,
+  hsl(164deg 55% 79%) 19%,
+  hsl(175deg 66% 78%) 27%,
+  hsl(187deg 75% 77%) 34%,
+  hsl(195deg 81% 75%) 41%,
+  hsl(197deg 79% 73%) 47%,
+  hsl(201deg 76% 70%) 53%,
+  hsl(203deg 73% 68%) 59%,
+  hsl(202deg 77% 62%) 66%,
+  hsl(201deg 85% 55%) 73%,
+  hsl(199deg 93% 48%) 81%,
+  hsl(197deg 100% 40%) 100%
+); 
+height: 100%;
 }
