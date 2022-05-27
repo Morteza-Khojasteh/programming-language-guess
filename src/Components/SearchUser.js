@@ -11,7 +11,6 @@ const SearchUser = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    setUserName("");
     await fetch(`https://api.github.com/users/${userName}/repos?per_page=100`)
       .then((response) => {
         return response.json();
@@ -67,7 +66,7 @@ const SearchUser = () => {
 
             <div className="col-auto">
               <button
-                className="btn btn-outline-secondary border-left-0 rounded-0 rounded-right"
+                className="btn btn-outline-dark font-weight-bold border-left-0 rounded-0 rounded-right"
                 data-toggle="modal"
                 data-target="#exampleModalCenter"
               >
@@ -100,9 +99,9 @@ const SearchUser = () => {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div className="modal-body text-center">
+              <div className="modal-body text-center text-primary">
                 {data !== "" ? (
-                  data
+                  <h3>{data}</h3>
                 ) : (
                   <div className="d-flex justify-content-center">
                     <div className="spinner-border" role="status">
