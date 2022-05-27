@@ -4,8 +4,6 @@ const SearchUser = () => {
   const [userName, setUserName] = useState("");
   const [data, setData] = useState("");
 
-  console.log(userName);
-
   const onChangeHandler = (e) => {
     setUserName((e.target.value).trim());
     setData("");
@@ -18,6 +16,7 @@ const SearchUser = () => {
         return response.json();
       })
       .then((allData) => {
+        setData(allData.message);
         findLanguages(allData);
         favoriteLanguage(allLanguages);
       });
@@ -31,7 +30,6 @@ const SearchUser = () => {
         allLanguages.push(item.language);
       }
     });
-    setUserName("");
   };
 
   const favoriteLanguage = (allLanguages) => {
