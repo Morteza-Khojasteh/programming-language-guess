@@ -9,6 +9,18 @@ const SearchUser = () => {
     setData("");
   };
 
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    setUserName("");
+    await fetch(`https://api.github.com/users/${userName}/repos?per_page=100`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((allData) => {
+        setData(allData);
+        console.log(allData);
+      });
+  };
 
   return (
     <>
