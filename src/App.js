@@ -1,11 +1,10 @@
 import './App.css';
+import SearchUser from "./Components/SearchUser";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        hello
-      </header>
+        <SearchUser />
     </div>
   );
 }
