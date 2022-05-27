@@ -48,7 +48,7 @@ const SearchUser = () => {
     <>
       <div className="container mt-5">
         <h2 className="text-center m-4">
-          GitHub user's favourite programming language!
+          <div className="title">GitHub user's favourite programming language!</div>
         </h2>
         <form autoComplete="on" onSubmit={onSubmitHandler}>
           <div className="row no-gutters">
