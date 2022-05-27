@@ -17,9 +17,31 @@ const SearchUser = () => {
         return response.json();
       })
       .then((allData) => {
-        setData(allData);
-        console.log(allData);
+        findLanguages(allData);
+        favoriteLanguage(allLanguages);
       });
+  };
+
+  let allLanguages = [];
+
+  const findLanguages = (allData) => {
+    allData.filter((item) => {
+      if (item.language !== null) {
+        allLanguages.push(item.language);
+      }
+    });
+    setUserName("");
+  };
+
+  const favoriteLanguage = (allLanguages) => {
+    const uniqueLanguages = allLanguages.reduce((acc, val) => {
+      acc[val] = acc[val] === undefined ? 1 : (acc[val] += 1);
+      return acc;
+    }, {});
+    const favoriteLanguage = Object.keys(uniqueLanguages).reduce((a, b) =>
+      uniqueLanguages[a] > uniqueLanguages[b] ? a : b
+    );
+    setData(favoriteLanguage);
   };
 
   return (
