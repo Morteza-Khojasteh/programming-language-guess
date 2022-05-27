@@ -4,6 +4,12 @@ const SearchUser = () => {
   const [userName, setUserName] = useState("");
   const [data, setData] = useState("");
 
+  const onChangeHandler = (e) => {
+    setUserName(e.target.value);
+    setData("");
+  };
+
+
   return (
     <>
       <div className="container mt-5">
