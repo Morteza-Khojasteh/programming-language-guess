@@ -29,6 +29,7 @@ const SearchUser = () => {
       if (item.language !== null) {
         allLanguages.push(item.language);
       }
+      return item
     });
   };
 
