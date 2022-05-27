@@ -4,8 +4,10 @@ const SearchUser = () => {
   const [userName, setUserName] = useState("");
   const [data, setData] = useState("");
 
+  console.log(userName);
+
   const onChangeHandler = (e) => {
-    setUserName(e.target.value);
+    setUserName((e.target.value).trim());
     setData("");
   };
 
