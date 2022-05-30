@@ -20,7 +20,7 @@ const SearchUser = () => {
       //  all user repositories data
       .then((githubUserData) => {
         // when username not found
-        setResult(githubUserData.message);
+        setResult(`${userName} ${githubUserData.message}`);
         findLanguages(githubUserData);
         favoriteLanguage(allLanguages);
       });
@@ -88,6 +88,7 @@ const SearchUser = () => {
                 className="btn btn-outline-dark font-weight-bold border-left-0 rounded-0 rounded-right"
                 data-toggle="modal"
                 data-target="#exampleModalCenter"
+                data-testId="search-user"
               >
                 Search
               </button>
