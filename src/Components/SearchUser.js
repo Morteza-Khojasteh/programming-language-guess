@@ -48,12 +48,14 @@ const SearchUser = () => {
         return acc;
       }, {});
 
-      // find the most popular language
+      // find the most popular language with number of values
       const userFavoriteLanguage = Object.keys(uniqueLanguages).reduce((a, b) =>
         uniqueLanguages[a] > uniqueLanguages[b] ? a : b
       );
       setResult(userFavoriteLanguage);
+      
     } else {
+      // if the length of allLanguages is 0
       setResult("Can't guess any languages!!");
     }
   };
