@@ -3,7 +3,7 @@ import SearchUser from "./Components/SearchUser";
 
 const App = () => {
   return (
-    <div className="App">
+    <div>
         <SearchUser />
     </div>
   );
