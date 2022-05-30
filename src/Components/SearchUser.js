@@ -2,53 +2,69 @@ import React, { useState } from "react";
 
 const SearchUser = () => {
   const [userName, setUserName] = useState("");
-  const [data, setData] = useState("");
+  const [result, setResult] = useState("");
 
+  // get username from input
   const onChangeHandler = (e) => {
-    setUserName((e.target.value).trim());
-    setData("");
+    setUserName(e.target.value.trim());
+    setResult("");
   };
 
+  // get user data from github api with username
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     await fetch(`https://api.github.com/users/${userName}/repos?per_page=100`)
       .then((response) => {
         return response.json();
       })
-      .then((allData) => {
-        setData(allData.message);
-        findLanguages(allData);
+      //  all user repositories data
+      .then((githubUserData) => {
+        // when username not found
+        setResult(githubUserData.message);
+        findLanguages(githubUserData);
         favoriteLanguage(allLanguages);
       });
   };
 
+  // list of all languages from all repositories for specific username
   let allLanguages = [];
 
-  const findLanguages = (allData) => {
-    allData.filter((item) => {
+  // find all languages for specific username
+  const findLanguages = (userData) => {
+    userData.filter((item) => {
       if (item.language !== null) {
         allLanguages.push(item.language);
       }
-      return item
+      return item;
     });
   };
 
+  // find favorite language for specific username
   const favoriteLanguage = (allLanguages) => {
-    const uniqueLanguages = allLanguages.reduce((acc, val) => {
-      acc[val] = acc[val] === undefined ? 1 : (acc[val] += 1);
-      return acc;
-    }, {});
-    const favoriteLanguage = Object.keys(uniqueLanguages).reduce((a, b) =>
-      uniqueLanguages[a] > uniqueLanguages[b] ? a : b
-    );
-    setData(favoriteLanguage);
+    // how many times each language appears in allLanguages Array
+    if (allLanguages.length > 0) {
+      const uniqueLanguages = allLanguages.reduce((acc, val) => {
+        acc[val] = acc[val] === undefined ? 1 : (acc[val] += 1);
+        return acc;
+      }, {});
+
+      // find the most popular language
+      const userFavoriteLanguage = Object.keys(uniqueLanguages).reduce((a, b) =>
+        uniqueLanguages[a] > uniqueLanguages[b] ? a : b
+      );
+      setResult(userFavoriteLanguage);
+    } else {
+      setResult("Can't guess any languages!!");
+    }
   };
 
   return (
     <>
       <div className="container mt-5">
         <h2 className="text-center m-4">
-          <div className="title">GitHub user's favourite programming language!</div>
+          <div className="title">
+            GitHub user's favourite programming language!
+          </div>
         </h2>
         <form autoComplete="on" onSubmit={onSubmitHandler}>
           <div className="row no-gutters">
@@ -101,8 +117,8 @@ const SearchUser = () => {
                 </button>
               </div>
               <div className="modal-body text-center text-primary">
-                {data !== "" ? (
-                  <h3>{data}</h3>
+                {result !== "" ? (
+                  <h3>{result}</h3>
                 ) : (
                   <div className="d-flex justify-content-center">
                     <div className="spinner-border" role="status">
